@@ -74,7 +74,7 @@ public class ArvoreBiOrdenada<T extends Comparable> {
         }
 
     }
-    public Lista<T> ordena() {
+    public Lista<T> paraLista() {
         Lista<T> retorno = new ListaVetor<>();
         return emOrdem(raiz, retorno);
     }
@@ -98,7 +98,7 @@ public class ArvoreBiOrdenada<T extends Comparable> {
 
     @Override
     public String toString() {
-        Lista<T> impArvore = ordena();
+        Lista<T> impArvore = paraLista();
         return impArvore.toString();
     }
 

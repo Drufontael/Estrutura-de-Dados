@@ -1,5 +1,7 @@
 package estruturadados.base;
 
+import java.util.Arrays;
+
 public class EstruturaEstatica<T> implements Lista<T>{
     protected int tamanho;
     protected T[] elementos;
@@ -85,6 +87,13 @@ public class EstruturaEstatica<T> implements Lista<T>{
 
     public void limpa(){
         this.elementos = (T[]) new Object[this.elementos.length];
+    }
+    public Object[] paraVetor(){
+        return Arrays.copyOf(elementos,tamanho);
+    }
+    public T[] paraVetor(T[] vetor){
+        return (T[])Arrays.copyOf(elementos,tamanho,vetor.getClass());//(T[]) new Object[this.tamanho];
+
     }
 
     @Override
