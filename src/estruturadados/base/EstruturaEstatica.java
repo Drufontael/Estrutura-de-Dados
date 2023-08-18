@@ -1,6 +1,6 @@
 package estruturadados.base;
 
-public class EstruturaEstatica<T> {
+public class EstruturaEstatica<T> implements Lista<T>{
     protected int tamanho;
     protected T[] elementos;
 
@@ -13,7 +13,7 @@ public class EstruturaEstatica<T> {
         this(10);
     }
 
-    protected void adiciona(T elemento) {
+    public void adiciona(T elemento) {
         this.aumentaCapacidade();
         this.elementos[this.tamanho]=elemento;
         this.tamanho++;
@@ -76,6 +76,13 @@ public class EstruturaEstatica<T> {
     public boolean estaVazia(){
         return this.tamanho==0;
     }
+
+    @Override
+    public boolean contem(T elemento) {
+        if(this.busca(elemento)>=0) return true;
+        return false;
+    }
+
     public void limpa(){
         this.elementos = (T[]) new Object[this.elementos.length];
     }

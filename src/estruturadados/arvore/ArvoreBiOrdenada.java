@@ -1,7 +1,7 @@
 package estruturadados.arvore;
 
-import java.util.ArrayList;
-import java.util.List;
+import estruturadados.base.Lista;
+import estruturadados.vetor.ListaVetor;
 
 /**
  * Estrutura de arvore binaria de elementos únicos ordenados
@@ -74,12 +74,12 @@ public class ArvoreBiOrdenada<T extends Comparable> {
         }
 
     }
-    public List<T> ordena() {
-        List<T> retorno = new ArrayList<>();
+    public Lista<T> ordena() {
+        Lista<T> retorno = new ListaVetor<>();
         return emOrdem(raiz, retorno);
     }
-    public void esvazia(){
-        esvazia(raiz);
+    public void limpa(){
+        limpa(raiz);
     }
     public T primeiro(){
         Elemento<T> busca=raiz;
@@ -98,7 +98,7 @@ public class ArvoreBiOrdenada<T extends Comparable> {
 
     @Override
     public String toString() {
-        List<T> impArvore = ordena();
+        Lista<T> impArvore = ordena();
         return impArvore.toString();
     }
 
@@ -126,11 +126,11 @@ public class ArvoreBiOrdenada<T extends Comparable> {
 
 
 
-    private List<T> emOrdem(Elemento<T> elementoAtual, List<T> retorno) {
+    private Lista<T> emOrdem(Elemento<T> elementoAtual, Lista<T> retorno) {
 
         if (elementoAtual != null) {
             emOrdem(elementoAtual.getEsquerda(), retorno);
-            retorno.add(elementoAtual.getValor());
+            retorno.adiciona(elementoAtual.getValor());
             emOrdem(elementoAtual.getDireita(), retorno);
         }
         return retorno;
@@ -139,10 +139,10 @@ public class ArvoreBiOrdenada<T extends Comparable> {
 
 
 
-    private void esvazia(Elemento<T> elementoAtual) {
+    private void limpa(Elemento<T> elementoAtual) {
         if (elementoAtual != null) {
-            esvazia(elementoAtual.getEsquerda());
-            esvazia(elementoAtual.getDireita());
+            limpa(elementoAtual.getEsquerda());
+            limpa(elementoAtual.getDireita());
             Elemento<T> apagar=raizAcima(elementoAtual.getValor());
             if(apagar==null){
                 raiz=null;

@@ -2,13 +2,13 @@ package estruturadados.vetor;
 
 import estruturadados.base.EstruturaEstatica;
 
-public class Lista<T> extends EstruturaEstatica<T> {
+public class ListaVetor<T> extends EstruturaEstatica<T> {
 
-    public Lista(int capacidade){
+    public ListaVetor(int capacidade){
         super(capacidade);
     }
 
-    public Lista(){
+    public ListaVetor(){
         super();
     }
 

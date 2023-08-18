@@ -1,23 +1,80 @@
 package estruturadados.lista;
 
-public class ListaEncadeada<T> {
-    private No<T> inicio;
-    private No<T> ultima;
+import estruturadados.base.Lista;
+
+public class ListaEncadeada<T> implements Lista<T> {
+    private No<T> primeiro;
+    private No<T> ultimo;
     private int tamanho=0;
 
     public void adiciona(T elemento){
         No<T> celula=new No<>(elemento);
         if(this.tamanho==0){
-            this.inicio = celula;
+            this.primeiro = celula;
         }else {
-            this.ultima.setProximo(celula);
+            this.ultimo.setProximo(celula);
         }
-        this.ultima=celula;
+        this.ultimo =celula;
         tamanho++;
     }
 
+    public No<T> primeiro() {
+        return primeiro;
+    }
+
+    public No<T> ultimo() {
+        return ultimo;
+    }
+
+    @Override
+    public void remove(T elemento) {
+        No<T> apaga=this.primeiro;
+        No<T> anterior=null;
+        if(primeiro.getElemento().equals(elemento)){
+            this.primeiro = primeiro.getProximo();
+            apaga.setElemento(null);
+            apaga.setProximo(null);
+        }else
+        {
+            while (!apaga.getElemento().equals(elemento)) {
+                anterior = apaga;
+                apaga = apaga.getProximo();
+                if (apaga==null){
+                    tamanho++;
+                    break;
+                }
+            }
+            if(apaga!=null){
+                anterior.setProximo(apaga.getProximo());
+                apaga.setProximo(null);
+                apaga.setElemento(null);
+                if (anterior.getProximo() == null) this.ultimo = anterior;
+            }
+        }
+        tamanho--;
+
+
+    }
+
+
+    @Override
+    public boolean estaVazia() {
+        return tamanho==0;
+    }
+
+    @Override
+    public boolean contem(T elemento) {
+        if(this.primeiro.getElemento().equals(elemento)) return true;
+        No<T> atual=this.primeiro;
+        while (atual.getProximo()!=null){
+            if(atual.getProximo().equals(elemento)) return true;
+            atual=atual.getProximo();
+        }
+        return false;
+    }
+
     public void limpa(){
-        for(No<T> atual=this.inicio;atual!=null;){
+        for(No<T> atual = this.primeiro; atual!=null;){
             No<T> proximo=atual.getProximo();
             atual.setElemento(null);
             atual.setProximo(null);
@@ -26,14 +83,15 @@ public class ListaEncadeada<T> {
         this.tamanho=0;
     }
 
-    public int getTamanho() {
+    @Override
+    public int tamanho() {
         return tamanho;
     }
 
     @Override
     public String toString() {
         if (this.tamanho==0) return "[]";
-        No<T> atual=this.inicio;
+        No<T> atual=this.primeiro;
         final StringBuilder sb = new StringBuilder("[");
         sb.append(atual.getElemento());
         while (atual.getProximo()!=null){
