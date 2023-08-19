@@ -2,7 +2,7 @@
 ## Implementação em Java
 Este repositório contem meus estudos de estruturas de dados e alguns algoritmos classicos. Inicialmente acompanhei o 
 curso da [Loiane](https://github.com/loiane/loiane), depois fui pegando um pouco ali, um pouco aqui, garimpando a 
-internet, até que achei os videos do [2guarinos](youtube.com/@2guarinos/about) e mudei minha metodologia que era 
+internet, até que achei os videos do [2guarinos](https://www.youtube.com/@2guarinos/about) e mudei minha metodologia que era 
 acompanhar os videos implementando. Agora eu vejo o video para entender as estruturas e algoritmos e depois tento 
 implentar por conta própria.
 
