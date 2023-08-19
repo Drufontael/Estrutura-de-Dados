@@ -95,6 +95,9 @@ public class EstruturaEstatica<T> implements Lista<T>{
         return (T[])Arrays.copyOf(elementos,tamanho,vetor.getClass());//(T[]) new Object[this.tamanho];
 
     }
+    public void ordena(){
+        Arrays.sort(elementos);
+    }
 
     @Override
     public String toString() {

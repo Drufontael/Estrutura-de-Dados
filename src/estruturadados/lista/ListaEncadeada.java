@@ -7,6 +7,7 @@ public class ListaEncadeada<T> implements Lista<T> {
     private No<T> ultimo;
     private int tamanho=0;
 
+    @Override
     public void adiciona(T elemento){
         No<T> celula=new No<>(elemento);
         if(this.tamanho==0){
