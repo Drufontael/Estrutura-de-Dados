@@ -9,3 +9,6 @@ implentar por conta própria.
 Minha intenção é criar o máximo de estruturas e algoritmos possíveis sem o uso do Collections e as interfaces List, Set 
 e Map. Para isso eu vou tentar implementar o máximo das funcionalidades das bibliotecas acima citadas usando os conhecimentos 
 adquiridos online.
+
+Os nomes dos atributos e métodos estão todos em português justamente para facilitar o entendimento das funcionalidades das
+estruturas e algoritmos.
