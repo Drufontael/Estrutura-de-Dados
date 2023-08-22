@@ -1,7 +1,7 @@
 package algoritmos;
 
 import estruturadados.grafo.Grafo;
-import estruturadados.grafo.VerticeSimples;
+import estruturadados.grafo.Vertice;
 import estruturadados.vetor.ListaVetor;
 
 public class Dijkstra<T>{
@@ -20,7 +20,7 @@ public class Dijkstra<T>{
         this.origem = origem;
         this.destino = destino;
         this.grafo = grafo;
-        ListaVetor<VerticeSimples<T>> vertices=grafo.percorreLargura(origem);
+        ListaVetor<Vertice<T>> vertices=grafo.percorreLargura(origem);
         setMatrizPesos(vertices);
         distancia=new double[vertices.tamanho()];
         rotuloFinal=new boolean[vertices.tamanho()];
@@ -39,7 +39,7 @@ public class Dijkstra<T>{
         }
 
     }
-    public void setMatrizPesos(ListaVetor<VerticeSimples<T>> vertices){
+    public void setMatrizPesos(ListaVetor<Vertice<T>> vertices){
         double[][] pesos=new double[vertices.tamanho()][vertices.tamanho()];
         for (int i=0;i<vertices.tamanho();i++){
             for (int j=0;j<vertices.tamanho();j++){
@@ -63,7 +63,7 @@ public class Dijkstra<T>{
     public ListaVetor<T> percurso(){
        return percurso;
     }
-    public double menorDistancia(ListaVetor<VerticeSimples<T>> vertices){
+    public double menorDistancia(ListaVetor<Vertice<T>> vertices){
         distancia[0]=0.0;
         rotuloFinal[0]=true;
         recente=0;
