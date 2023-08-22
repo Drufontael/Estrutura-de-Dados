@@ -68,7 +68,7 @@ public class ArestaSimples<T> {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ArestaSimples{");
+        final StringBuilder sb = new StringBuilder();
         sb.append("(").append(vertice1.getElemento());
         sb.append("<--").append(peso);
         sb.append("-->").append(vertice2.getElemento());
