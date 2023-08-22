@@ -8,7 +8,7 @@ public class ArestaSimples<T> {
     public ArestaSimples(VerticeSimples<T> vertice1, VerticeSimples<T> vertice2) {
         this.vertice1 = vertice1;
         this.vertice2 = vertice2;
-        this.peso=0.0;
+        this.peso=1.0;
     }
 
     public ArestaSimples(VerticeSimples<T> vertice1, VerticeSimples<T> vertice2, double peso) {
