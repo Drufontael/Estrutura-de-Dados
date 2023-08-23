@@ -1,8 +1,8 @@
-package estruturadados.base;
+package estruturadados.lista;
 
 import java.util.Arrays;
 
-public class EstruturaEstatica<T> implements Lista<T>{
+public abstract class EstruturaEstatica<T> implements Lista<T> {
     protected int tamanho;
     protected T[] elementos;
 
@@ -21,7 +21,7 @@ public class EstruturaEstatica<T> implements Lista<T>{
         this.tamanho++;
     }
 
-    protected void adiciona(T elemento, int posicao){
+    public void adiciona( int posicao,T elemento){
         aumentaCapacidade();
         if(!(posicao>=0 && posicao<=this.tamanho)){
             throw new IllegalArgumentException("Posição invalida!");
@@ -41,14 +41,15 @@ public class EstruturaEstatica<T> implements Lista<T>{
             this.elementos=novosElementos;
         }
     }
-    public T busca(int posicao){
+    @Override
+    public T pega(int posicao){
         if(!(posicao>=0 && posicao<this.tamanho)){
             throw new IllegalArgumentException("Posição invalida!");
         }
         return this.elementos[posicao];
     }
-
-    public int busca(T elemento){
+    @Override
+    public int pega(T elemento){
         for(int i=0;i<this.tamanho;i++){
             if(this.elementos[i].equals(elemento)){
                 return i;
@@ -57,12 +58,13 @@ public class EstruturaEstatica<T> implements Lista<T>{
         return -1;
     }
 
+    @Override
     public int tamanho(){
         return this.tamanho;
     }
 
     public void remove(T elemento){
-        int indice=this.busca(elemento);
+        int indice=this.pega(elemento);
         remove(indice);
     }
     public void remove(int posicao){
@@ -75,14 +77,14 @@ public class EstruturaEstatica<T> implements Lista<T>{
         this.tamanho--;
     }
 
+    @Override
     public boolean estaVazia(){
         return this.tamanho==0;
     }
 
     @Override
     public boolean contem(T elemento) {
-        if(this.busca(elemento)>=0) return true;
-        return false;
+        return this.pega(elemento) >= 0;
     }
 
     public void limpa(){

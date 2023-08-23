@@ -1,7 +1,7 @@
 package estruturadados.grafo;
 
 import estruturadados.fila.FilaEncadeada;
-import estruturadados.vetor.ListaVetor;
+import estruturadados.lista.ListaVetor;
 
 public class Grafo<T> {
     private ListaVetor<Vertice<T>> vertices;
@@ -43,7 +43,7 @@ public class Grafo<T> {
 
     public Vertice<T> pegaVertice(T elemento){
         for (int i=0;i< vertices.tamanho();i++){
-            if (vertices.busca(i).getElemento().equals(elemento)) return vertices.busca(i);
+            if (vertices.pega(i).getElemento().equals(elemento)) return vertices.pega(i);
         }
         return null;
     }
@@ -58,7 +58,7 @@ public class Grafo<T> {
         while (!fila.estaVazia()){
             Vertice<T> vizitado=fila.proximo();
             for (int i=0;i<vizitado.getArestas().tamanho();i++){
-                Vertice<T> proximo=vizitado.getArestas().busca(i).getVertice2();
+                Vertice<T> proximo=vizitado.getArestas().pega(i).getVertice2();
                 if(!marcados.contem(proximo)){
                     fila.enfileira(proximo);
                     marcados.adiciona(proximo);

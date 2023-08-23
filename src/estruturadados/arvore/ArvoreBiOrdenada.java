@@ -1,7 +1,7 @@
 package estruturadados.arvore;
 
-import estruturadados.base.Lista;
-import estruturadados.vetor.ListaVetor;
+import estruturadados.lista.Lista;
+import estruturadados.lista.ListaVetor;
 
 /**
  * Estrutura de arvore binaria de elementos únicos ordenados

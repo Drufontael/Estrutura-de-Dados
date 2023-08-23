@@ -1,6 +1,6 @@
 package estruturadados.grafo;
 
-import estruturadados.vetor.ListaVetor;
+import estruturadados.lista.ListaVetor;
 
 public class Vertice<T> {
     private T elemento;
@@ -32,11 +32,11 @@ public class Vertice<T> {
         Aresta<T> teste=new Aresta<>(ele1,ele2);
         for(int i=0;i< arestas.tamanho();i++){
             //if(arestas.busca(i).equals(teste)) return arestas.busca(i);
-            if((arestas.busca(i).getVertice1().getElemento().equals(elemento1) &&
-                    arestas.busca(i).getVertice2().getElemento().equals(elemento2))||
-                    (arestas.busca(i).getVertice1().getElemento().equals(elemento2) &&
-                            arestas.busca(i).getVertice2().getElemento().equals(elemento1))) {
-                return arestas.busca(i);
+            if((arestas.pega(i).getVertice1().getElemento().equals(elemento1) &&
+                    arestas.pega(i).getVertice2().getElemento().equals(elemento2))||
+                    (arestas.pega(i).getVertice1().getElemento().equals(elemento2) &&
+                            arestas.pega(i).getVertice2().getElemento().equals(elemento1))) {
+                return arestas.pega(i);
             }
         }
         return null;
@@ -46,7 +46,7 @@ public class Vertice<T> {
         Vertice<T> ele2=new Vertice<>(elemento2);
         Aresta<T> teste=new Aresta<>(ele1,ele2,peso);
         for(int i=0;i< arestas.tamanho();i++){
-            if(arestas.busca(i).equals(teste)) return arestas.busca(i);
+            if(arestas.pega(i).equals(teste)) return arestas.pega(i);
             /*if((arestas.busca(i).getVertice1().getElemento().equals(elemento1) &&
                     arestas.busca(i).getVertice2().getElemento().equals(elemento2))||
                     (arestas.busca(i).getVertice1().getElemento().equals(elemento2) &&

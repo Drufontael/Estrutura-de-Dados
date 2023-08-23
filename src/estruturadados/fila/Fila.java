@@ -1,6 +1,6 @@
 package estruturadados.fila;
 
-import estruturadados.base.EstruturaEstatica;
+import estruturadados.lista.EstruturaEstatica;
 
 public class Fila<T> extends EstruturaEstatica<T> {
     public Fila(){

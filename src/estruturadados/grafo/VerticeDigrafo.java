@@ -1,6 +1,6 @@
 package estruturadados.grafo;
 
-import estruturadados.vetor.ListaVetor;
+import estruturadados.lista.ListaVetor;
 
 public class VerticeDigrafo<T> {
     private T elemento;
@@ -38,14 +38,14 @@ public class VerticeDigrafo<T> {
     }
 
     public void adicionaSaida(ArestaDirecionada<T> arestaDirecionada) {
-        if(arestasSaindo.busca(arestaDirecionada)<0){
+        if(arestasSaindo.pega(arestaDirecionada)<0){
             arestasSaindo.adiciona(arestaDirecionada);
         }
 
     }
 
     public void adicionaEntrada(ArestaDirecionada<T> arestaDirecionada) {
-        if(arestasEntrando.busca(arestaDirecionada)<0){
+        if(arestasEntrando.pega(arestaDirecionada)<0){
             arestasEntrando.adiciona(arestaDirecionada);
         }
     }

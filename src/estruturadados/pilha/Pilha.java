@@ -1,6 +1,6 @@
 package estruturadados.pilha;
 
-import estruturadados.base.EstruturaEstatica;
+import estruturadados.lista.EstruturaEstatica;
 
 public class Pilha<T> extends EstruturaEstatica<T> {
     public Pilha(){
