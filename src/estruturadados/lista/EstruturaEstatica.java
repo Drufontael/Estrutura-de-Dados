@@ -1,8 +1,10 @@
 package estruturadados.lista;
 
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-public abstract class EstruturaEstatica<T> implements Lista<T> {
+public abstract class EstruturaEstatica<T> implements Lista<T>{
     protected int tamanho;
     protected T[] elementos;
 
@@ -111,6 +113,26 @@ public abstract class EstruturaEstatica<T> implements Lista<T> {
         }
         s.append("]");
         return s.toString();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
+            private int indice = 0;
+
+            @Override
+            public boolean hasNext() {
+                return indice < tamanho;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return elementos[indice++];
+            }
+        };
     }
 
 }

@@ -15,6 +15,6 @@ public class FilaComPrioridade <T> extends Fila<T>{
         for(i=0;i<this.tamanho;i++){
             if(chave.compareTo(this.elementos[i])<0) break;
         }
-        super.adiciona(elemento,i);
+        super.adiciona(i,elemento);
     }
 }

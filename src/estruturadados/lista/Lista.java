@@ -1,6 +1,6 @@
 package estruturadados.lista;
 
-public interface Lista<T> {
+public interface Lista<T> extends Iterable {
     void adiciona(T elemento);
     void adiciona(int indice, T elemento);
     int pega(T elemento);

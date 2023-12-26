@@ -36,25 +36,40 @@ public class ArvoreBiOrdenada<T extends Comparable> {
             raiz = novoElemento;
             tamanho += 1;
         } else {
-            if (!eRaiz(valor) && raizAcima(valor) == null) {
                 desceElemento(raiz, novoElemento);
-            }
         }
 
     }
+    public T retonaValor(T valor){
+        Elemento<T> procurado=raiz;
+        while(procurado.getValor().compareTo(valor)!=0){
+            if(procurado.getValor().compareTo(valor)<0){
+                procurado=procurado.getDireita()!=null?procurado.getDireita():null;
+                if(procurado==null) return null;
+            }else{
+                procurado=procurado.getEsquerda()!=null?procurado.getEsquerda():null;
+                if(procurado==null) return null;
+            }
+        }
+        return procurado.getValor();
+    }
+
+
     public void remove(T valor){
         Elemento<T> procurado=raiz;
-        while(!procurado.getValor().equals(valor)){
+        while(procurado!=null && !procurado.getValor().equals(valor)){
             if(procurado.getValor().compareTo(valor)<0){
                 procurado=procurado.getDireita();
+                if(procurado==null) return;
             }else{
                 procurado=procurado.getEsquerda();
+                if(procurado==null) return;
             }
         }
         Elemento<T> substituto=proximoDireito(procurado);
         if(substituto==null) substituto=proximoEsquerda(procurado);
         Elemento<T> pai=raizAcima(procurado.getValor());
-        Elemento<T> paiSubstituto=raizAcima(substituto.getValor());
+        Elemento<T> paiSubstituto=raizAcima(substituto!=null?substituto.getValor():null);
         if(substituto==null){
             if(pai.getDireita().getValor().equals(valor)){
                 pai.setDireita(null);
@@ -107,20 +122,30 @@ public class ArvoreBiOrdenada<T extends Comparable> {
     // ***** METODOS AUXILIARES*****
 
     private void desceElemento(Elemento<T> raiz, Elemento<T> novoElemento) {
-        if (novoElemento.getValor().compareTo(raiz.getValor()) >= 0) {
+        if (novoElemento.getValor().compareTo(raiz.getValor()) > 0) {
             if (raiz.getDireita() == null) {
                 raiz.setDireita(novoElemento);
                 tamanho += 1;
             } else {
                 desceElemento(raiz.getDireita(), novoElemento);
             }
-        } else {
+        } else if(novoElemento.getValor().compareTo(raiz.getValor())<0){
             if (raiz.getEsquerda() == null) {
                 raiz.setEsquerda(novoElemento);
                 tamanho += 1;
             } else {
                 desceElemento(raiz.getEsquerda(), novoElemento);
             }
+        } else {
+            novoElemento.setDireita(raiz.getDireita());
+            novoElemento.setEsquerda(raiz.getEsquerda());
+            Elemento<T> raizAcima=raizAcima(raiz.getValor());
+            if(raizAcima!=null){
+                if (raizAcima.getValor().compareTo(novoElemento.getValor()) > 0) {
+                    raizAcima.setEsquerda(novoElemento);
+                } else raizAcima.setDireita(novoElemento);
+            }
+
         }
     }
 
@@ -164,6 +189,7 @@ public class ArvoreBiOrdenada<T extends Comparable> {
     }
 
     private Elemento<T> raizAcima(T valor) {
+        if(valor==null) return null;
         return retornaRaizAcima(valor, this.raiz);
     }
 
@@ -185,6 +211,7 @@ public class ArvoreBiOrdenada<T extends Comparable> {
     }
 
     private Elemento<T> proximoDireito(Elemento<T> elemento){
+        if(elemento==null) return null;
         if(elemento.getDireita()==null) return null;
         Elemento<T> encontrado=elemento.getDireita();
         while (encontrado.getEsquerda()!=null){
@@ -193,6 +220,7 @@ public class ArvoreBiOrdenada<T extends Comparable> {
         return encontrado;
     }
     private Elemento<T> proximoEsquerda(Elemento<T> elemento){
+        if(elemento==null) return null;
         if(elemento.getEsquerda()==null) return null;
         Elemento<T> encontrado=elemento.getEsquerda();
         while (encontrado.getDireita()!=null){

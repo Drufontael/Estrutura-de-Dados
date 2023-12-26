@@ -1,5 +1,8 @@
 package estruturadados.lista;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 public class ListaEncadeada<T> implements Lista<T> {
     private No<T> primeiro;
     private No<T> ultimo;
@@ -160,4 +163,23 @@ public class ListaEncadeada<T> implements Lista<T> {
         return sb.toString();
     }
 
+    @Override
+    public Iterator iterator() {
+        return new Iterator<T>() {
+            private int indice = 0;
+
+            @Override
+            public boolean hasNext() {
+                return indice < tamanho;
+            }
+
+            @Override
+            public T next() {
+                if (!hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return pega(indice++);
+            }
+        };
+    }
 }
