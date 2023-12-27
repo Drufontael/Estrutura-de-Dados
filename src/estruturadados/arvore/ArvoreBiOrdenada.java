@@ -55,40 +55,49 @@ public class ArvoreBiOrdenada<T extends Comparable> {
     }
 
 
-    public void remove(T valor){
-        Elemento<T> procurado=raiz;
-        while(procurado!=null && !procurado.getValor().equals(valor)){
-            if(procurado.getValor().compareTo(valor)<0){
-                procurado=procurado.getDireita();
-                if(procurado==null) return;
-            }else{
-                procurado=procurado.getEsquerda();
-                if(procurado==null) return;
+    public void remove(T valor) {
+        Elemento<T> procurado = raiz;
+
+        while (procurado != null && !procurado.getValor().equals(valor)) {
+            if (procurado.getValor().compareTo(valor) < 0) {
+                procurado = procurado.getDireita();
+            } else {
+                procurado = procurado.getEsquerda();
             }
         }
-        Elemento<T> substituto=proximoDireito(procurado);
-        if(substituto==null) substituto=proximoEsquerda(procurado);
-        Elemento<T> pai=raizAcima(procurado.getValor());
-        Elemento<T> paiSubstituto=raizAcima(substituto!=null?substituto.getValor():null);
-        if(substituto==null){
-            if(pai.getDireita().getValor().equals(valor)){
-                pai.setDireita(null);
-            }else pai.setEsquerda(null);
-        }else{
 
-            if(paiSubstituto.getDireita().equals(substituto)){
-                paiSubstituto.setDireita(null);
-            }else paiSubstituto.setEsquerda(null);
-            if(pai.getDireita().getValor().equals(valor)){
-                pai.setDireita(substituto);
-            }else pai.setEsquerda(substituto);
-            substituto.setEsquerda(procurado.getEsquerda());
-            substituto.setDireita(procurado.getDireita());
-            tamanho-=1;
+        if (procurado == null) return; // elemento com valor T não foi encontrado
 
+        Elemento<T> substituto = proximoDireito(procurado);// procura elemento a direita, próximo valor maior que T
+
+        if (substituto == null) substituto = proximoEsquerda(procurado);
+
+        Elemento<T> pai = raizAcima(procurado.getValor());
+
+        if (substituto == null) { // elemento com valor T é uma folha
+            if (pai.getDireita()!=null && pai.getDireita().equals(procurado)) pai.setDireita(null);
+            else pai.setEsquerda(null);
+            return;
         }
 
+
+        Elemento<T> paiSubstituto = raizAcima(substituto.getValor());
+
+
+        if (paiSubstituto.getDireita()!=null && paiSubstituto.getDireita().equals(substituto)) {
+            paiSubstituto.setDireita(null);
+        } else paiSubstituto.setEsquerda(null);
+        if (pai.getDireita()!=null && pai.getDireita().getValor().equals(valor)) {
+            pai.setDireita(substituto);
+        } else pai.setEsquerda(substituto);
+
+        substituto.setEsquerda(procurado.getEsquerda());
+        substituto.setDireita(procurado.getDireita());
+        tamanho -= 1;
     }
+
+
+
     public Lista<T> paraLista() {
         Lista<T> retorno = new ListaVetor<>();
         return emOrdem(raiz, retorno);

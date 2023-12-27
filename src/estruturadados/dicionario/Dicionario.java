@@ -19,7 +19,7 @@ public class Dicionario<C,V> {
 
     }
     private Lista<ParChaveValor<C,V>>[] tabela;
-    int TAMANHO=16;
+    int TAMANHO=101;
 
     public Dicionario(){
         tabela=new Lista[TAMANHO];
